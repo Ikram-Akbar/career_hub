@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import { CiLocationOn } from "react-icons/ci";
 import { CiBadgeDollar } from "react-icons/ci";
+import { Link } from "react-router-dom";
 const FeaturedJob = ({ job }) => {
   const {
+    id,
     logo,
     job_title,
     company_name,
@@ -28,11 +30,21 @@ const FeaturedJob = ({ job }) => {
           </button>
         </div>
         <div className="flex">
-          <h2  className="flex mt-2 mr-2"> <CiLocationOn className="text-2xl mr-2"  />{location}</h2>
-          <h2 className="flex mt-2"> <CiBadgeDollar className="text-2xl mr-2"/>{salary}</h2>
+          <h2 className="flex mt-2 mr-2">
+            {" "}
+            <CiLocationOn className="text-2xl mr-2" />
+            {location}
+          </h2>
+          <h2 className="flex mt-2">
+            {" "}
+            <CiBadgeDollar className="text-2xl mr-2" />
+            {salary}
+          </h2>
         </div>
         <div className="card-actions ">
-          <button className="btn btn-primary">More Details </button>
+          <Link to={`/job/${id}`}>
+            <button className="btn btn-primary">More Details </button>
+          </Link>
         </div>
       </div>
     </div>
