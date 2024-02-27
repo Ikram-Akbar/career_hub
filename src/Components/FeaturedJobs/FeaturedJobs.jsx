@@ -25,8 +25,8 @@ const FeaturedJobs = () => {
 
   return (
     <div>
-      <h1 className="text-4xl text-center">
-        Featured Jobs - {featuredJobs.length}
+      <h1 className="text-4xl text-center font-semibold border-b-2 border-b-gray-500 m-5 p-5">
+        Featured Jobs 
       </h1>
       <div className="grid grid-cols-2 gap-6">
         {featuredJobs.slice(0, showAllJobs ? featuredJobs.length : 4).map((job, index) => (

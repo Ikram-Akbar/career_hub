@@ -14,7 +14,7 @@ const FeaturedJob = ({ job }) => {
     salary,
   } = job;
   return (
-    <div className="card card-compact bg-base-100 shadow-xl">
+    <div className="card card-compact bg-slate-300 shadow-xl p-5">
       <figure>
         <img className="" src={logo} alt="company logo" />
       </figure>
