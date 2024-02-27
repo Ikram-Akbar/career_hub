@@ -7,6 +7,20 @@ import bg from "../../assets/images/bg2.png";
 const AppliedJob = () => {
   const jobs = useLoaderData();
   const [appliedJobs, setAppliedJobs] = useState([]);
+  const [displayJobs, setDisplayJobs] = useState([]);
+  //filter: 
+  const handleJobsFilter = (filter) => {
+    if (filter === "all") {
+      setDisplayJobs(appliedJobs);
+    } else if (filter === "remote") {
+      const remoteJobs = appliedJobs.filter((job) => job.remote_or_onsite === "Remote");
+      setDisplayJobs(remoteJobs);
+    } else if (filter === "onsite") {
+      const onsiteJobs = appliedJobs.filter((job) => job.remote_or_onsite === "Onsite");
+      setDisplayJobs(onsiteJobs);
+    }
+  };
+  
 
   // stored jobs data :
   useEffect(() => {
@@ -22,6 +36,7 @@ const AppliedJob = () => {
         }
       }
       setAppliedJobs(jobsApplied);
+      setDisplayJobs(jobsApplied);
     }
   }, [jobs]);
 
@@ -34,9 +49,25 @@ const AppliedJob = () => {
         <h1 className="mx-10 p-10 text-center text-4xl ">
           You have Applied Jobs: {appliedJobs.length}
         </h1>
+        <div className="flex justify-end">
+          <details className="dropdown">
+            <summary className="m-1 btn bg-slate-400">Filter</summary>
+            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+              <li>
+                <a onClick={()=>handleJobsFilter("all")}>All</a>
+              </li>
+              <li>
+                <a onClick={()=>handleJobsFilter("remote")}>Remote</a>
+              </li>
+              <li>
+                <a onClick={()=>handleJobsFilter("onsite")}>Onsite</a>
+              </li>
+            </ul>
+          </details>
+        </div>
       </div>
       <div className="grid md:grid-cols-2 p-10 gap-4 shadow-xl ">
-        {appliedJobs.map((job) => (
+        {displayJobs.map((job) => (
           <AppliedJobCard key={job.key} job={job} />
         ))}
       </div>
